@@ -1,58 +1,87 @@
 # Delivery Truck Pallet Packing Optimization
 
-## Project Overview
-This project was developed for the **Design of Algorithms (DA)** course (L.EIC016) at **FEUP** (Faculty of Engineering of the University of Porto), Spring 2025.
+[English Version](README_EN.md)
 
-**Final Grade: 18.5/20**
+> Ferramenta em C++ para otimizar o carregamento de paletes num camião de entregas, uma variante do problema da Mochila 0/1 (0/1 Knapsack).
 
-The goal is to solve the **Delivery Truck Pallet Packing Optimization Problem**, which is a real-world variation of the **0/1 Knapsack Problem**. The objective is to maximize the total profit of pallets loaded into a delivery truck without exceeding its maximum weight capacity.
+## Autores
 
-## Implemented Algorithms
-The tool provides four different algorithmic approaches to solve the problem:
+| Nome                           | E-Mail                   |
+| ------------------------------ | ------------------------ |
+| Ana Catarina Monteiro de Sousa | up202306419@edu.fe.up.pt |
 
-1.  **Brute-Force (Exhaustive Search)**:
-    *   Explores all possible subsets of pallets to find the absolute optimal solution.
-    *   **Time Complexity**: $O(2^n)$, where $n$ is the number of pallets.
-    *   **Space Complexity**: $O(n)$ (recursion depth).
-2.  **Dynamic Programming**:
-    *   Uses a 2D table to store the maximum profit for subproblems.
-    *   **Tie-breaking rules**: If two combinations have the same profit, it prefers the one with fewer pallets. If they still tie, it prefers the one with the smallest sum of original indices.
-    *   **Time Complexity**: $O(n \cdot W)$, where $W$ is the truck's capacity.
-    *   **Space Complexity**: $O(n \cdot W)$ for the DP table.
-3.  **Greedy Algorithm**:
-    *   An approximation algorithm that selects pallets based on their **profit-to-weight ratio**.
-    *   **Time Complexity**: $O(n \log n)$ due to sorting.
-    *   **Space Complexity**: $O(n)$.
-4.  **Hybrid Algorithm**:
-    *   Combines the Greedy approach and Dynamic Programming.
-    *   It first computes a baseline using the Greedy heuristic and then performs DP to find the optimal solution, allowing for performance comparisons.
+## Contexto Académico
 
-## Project Structure
+- **Unidade Curricular:** Desenho de Algoritmos
+- **Instituição:** FEUP — Faculdade de Engenharia da Universidade do Porto
+- **Ano/Semestre:** 2024/2025 — 2.º semestre
+- **Nota obtida:** 18.5/20
+
+## Descrição
+
+O objetivo é resolver o **Delivery Truck Pallet Packing Optimization Problem**, uma variante real do **Problema da Mochila 0/1**. O objetivo é maximizar o lucro total das paletes carregadas num camião de entregas sem exceder a sua capacidade máxima de peso.
+
+### Algoritmos Implementados
+
+A ferramenta disponibiliza quatro abordagens algorítmicas diferentes para resolver o problema:
+
+1. **Brute-Force (Pesquisa Exaustiva)**
+   - Explora todos os subconjuntos possíveis de paletes para encontrar a solução ótima absoluta.
+   - **Complexidade temporal:** O(2ⁿ), onde n é o número de paletes.
+   - **Complexidade espacial:** O(n) (profundidade da recursão).
+
+2. **Dynamic Programming (Programação Dinâmica)**
+   - Usa uma tabela 2D para guardar o lucro máximo de subproblemas.
+   - **Regras de tie-breaking:** se duas combinações têm o mesmo lucro, prefere a com menos paletes; se ainda houver empate, prefere a com a menor soma dos índices originais.
+   - **Complexidade temporal:** O(n · W), onde W é a capacidade do camião.
+   - **Complexidade espacial:** O(n · W) para a tabela de DP.
+
+3. **Greedy (Algoritmo Voraz)**
+   - Algoritmo de aproximação que seleciona paletes com base na razão **lucro/peso**.
+   - **Complexidade temporal:** O(n log n) devido à ordenação.
+   - **Complexidade espacial:** O(n).
+
+4. **Híbrido**
+   - Combina a abordagem Greedy com a Programação Dinâmica.
+   - Calcula primeiro uma base com a heurística Greedy e depois executa a DP para encontrar a solução ótima, permitindo comparações de desempenho.
+
+## Tecnologias Utilizadas
+
+- C++ (C++14)
+- CMake (≥ 3.29)
+- Doxygen (documentação)
+- Ficheiros CSV para input/output
+
+## Estrutura do Projeto
+
 ```text
 .
-├── code/                       # Source code files
-│   ├── algorithms/             # Implementation of optimization algorithms
-│   ├── input_output/           # CSV reading and result printing utilities
-│   ├── menu/                   # CLI menu implementation
-│   ├── structs/                # Data structures (pallet, truck)
-│   ├── functions.h             # Main header with function prototypes
-│   └── main.cpp                # Program entry point
-├── datasets/                   # CSV input files (Truck capacity and Pallet data)
-├── documentation/              # Doxygen generated documentation (HTML/LaTeX)
-├── Project_2_Description.pdf   # Official project requirements
-├── presentation.pdf            # Project presentation and results demo
-├── CMakeLists.txt              # Build configuration
-└── Doxyfile                    # Doxygen configuration file
+├── code/                       # Código-fonte
+│   ├── algorithms/             # Implementação dos algoritmos de otimização
+│   ├── input_output/           # Leitura de CSV e impressão de resultados
+│   ├── menu/                   # Implementação do menu CLI
+│   ├── structs/                # Estruturas de dados (palete, camião)
+│   ├── functions.h             # Header principal com prototypes das funções
+│   └── main.cpp                # Ponto de entrada do programa
+├── datasets/                   # Ficheiros CSV de input (capacidade do camião e dados das paletes)
+├── documentation/              # Documentação gerada com Doxygen (HTML/LaTeX)
+├── Project_2_Description.pdf   # Enunciado oficial do projeto
+├── presentation.pdf            # Apresentação e demonstração de resultados
+├── CMakeLists.txt              # Configuração de build
+└── Doxyfile                    # Configuração do Doxygen
 ```
 
-## Getting Started
+## Requisitos
 
-### Prerequisites
-*   **CMake** (version 3.29 or higher)
-*   **C++ Compiler** (supporting C++14)
+- **CMake** (versão 3.29 ou superior)
+- **Compilador C++** com suporte para C++14
 
-### Compilation
-To compile the project, run the following commands in the root directory:
+## Como Compilar / Executar
+
+### Compilação
+
+Para compilar o projeto, executar os seguintes comandos na raiz do repositório:
+
 ```bash
 mkdir build
 cd build
@@ -60,25 +89,29 @@ cmake ..
 make
 ```
 
-### Execution
-After compilation, run the executable:
+### Execução
+
+Depois de compilado, executar o programa:
+
 ```bash
 ./DA_project2
 ```
 
-## Usage
-The application features a command-line interface:
-1.  **Select Dataset**: Enter the number of the dataset you wish to test (e.g., `1` for `datasets/Pallets_01.csv`).
-2.  **Choose Algorithm**: Select one of the four available algorithms to process the data.
-3.  **View Results**: The program will output the maximum profit, the number of pallets selected, execution time, and details for each selected pallet.
+## Como Usar
 
-## Datasets
-The input data is provided in two CSV files per dataset:
-*   `TruckAndPallets_<X>.csv`: Contains the `Capacity` and total number of `Pallets`.
-*   `Pallets_<X>.csv`: Contains the `Pallet` ID, `Weight`, and `Profit` for each item.
+A aplicação disponibiliza uma interface de linha de comandos:
 
-## Documentation
-The code is fully documented using **Doxygen**. You can find the generated documentation in the `documentation/html/` folder. To view it, open `documentation/html/index.html` in your web browser.
+1. **Selecionar dataset:** introduzir o número do dataset a testar (ex.: `1` para `datasets/Pallets_01.csv`).
+2. **Escolher algoritmo:** selecionar um dos quatro algoritmos disponíveis para processar os dados.
+3. **Ver resultados:** o programa apresenta o lucro máximo, o número de paletes selecionadas, o tempo de execução e os detalhes de cada palete selecionada.
 
-## Author
-Ana Catarina Monteiro de Sousa ([up202306419@up.pt](mailto:up202306419@up.pt))
+### Datasets
+
+Os dados de input são fornecidos em dois ficheiros CSV por dataset:
+
+- `TruckAndPallets_<X>.csv` — contém a `Capacity` (capacidade) e o número total de `Pallets` (paletes).
+- `Pallets_<X>.csv` — contém o `Pallet` (ID), `Weight` (peso) e `Profit` (lucro) de cada item.
+
+## Notas Adicionais
+
+O código está totalmente documentado com **Doxygen**. A documentação gerada encontra-se em `documentation/html/` — para a consultar, abrir `documentation/html/index.html` num browser.
